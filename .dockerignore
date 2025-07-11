@@ -1,0 +1,38 @@
+# Git files
+.git
+.gitignore
+.gitattributes
+
+# Development files
+.github
+cypress
+cypress.config.js
+node_modules
+npm-post-install.js
+package*.json
+
+# Testing and development
+phpstan.neon
+phpstan-bootstrap.php
+
+# Release scripts
+release.sh
+releases/
+tmp/
+
+# Documentation
+README.md
+CHANGELOG-1.x.md
+CONTRIBUTORS.txt
+CREDITS
+_config.yml
+
+# Build artifacts
+.editorconfig
+
+# IDE files
+.vscode
+.idea
+
+# Local config that shouldn't be in image
+config.local.php
