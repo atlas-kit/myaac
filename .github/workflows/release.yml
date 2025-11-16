@@ -3,11 +3,11 @@ name: Release
 on:
   push:
     branches:
-      - main
+      - dev
 
   pull_request:
     branches:
-      - main
+      - dev
 
   release:
     types: [published]
@@ -48,3 +48,4 @@ jobs:
         with:
           platforms: linux/amd64
           tags: ghcr.io/${{ github.repository }}:${{ steps.vars.outputs.tag }}
+          push: true
