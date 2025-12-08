@@ -18,7 +18,17 @@ if (!isset($config['database_overwrite'])) {
 
 if(!$config['database_overwrite'] && !isset($config['database_user'][0], $config['database_password'][0], $config['database_name'][0]))
 {
-	if(isset($config['lua']['sqlType'])) {// tfs 0.3
+	if (filter_var(getenv('MYAAC_USE_ENV'), FILTER_VALIDATE_BOOLEAN)) { // tfs 1.6+
+		$config['otserv_version'] = TFS_02;
+		$config['database_type'] = 'mysql';
+		$config['database_user'] = getenv('DB_USER');
+		$config['database_password'] = getenv('DB_PASSWORD');
+		$config['database_name'] = getenv('DB_NAME');
+		$config['database_host'] = getenv('DB_HOST');
+		$config['database_port'] = getenv('DB_PORT') ?: 3306;
+		$config['database_encryption'] = getenv('DB_ENCRYPTION') ?: 'sha1';
+	}
+	else if(isset($config['lua']['sqlType'])) {// tfs 0.3
 		if(isset($config['lua']['mysqlHost'])) {// tfs 0.2
 			$config['otserv_version'] = TFS_02;
 			$config['database_type'] = 'mysql';

@@ -3,6 +3,7 @@ defined('MYAAC') or die('Direct access not allowed!');
 
 // configuration
 $dirs_required_writable = [
+	CONFIG_DIR,
 	'system/logs',
 	'system/cache',
 ];

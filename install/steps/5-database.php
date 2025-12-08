@@ -43,12 +43,13 @@ if(!$error) {
 	$configToSave['database_auto_migrate'] = true;
 
 	$content = '';
-	$saved = Settings::saveConfig($configToSave, CONFIG_DIR . 'config.local.php', $content);
-	if ($saved || file_exists(CONFIG_DIR . 'config.local.php')) {
+	$pathToConfig = CONFIG_DIR . 'config.local.php';
+	$saved = Settings::saveConfig($configToSave, $pathToConfig, $content);
+	if ($saved || file_exists($pathToConfig)) {
 		success($locale['step_database_config_saved']);
 		$_SESSION['saved'] = true;
 
-		require CONFIG_DIR . 'config.local.php';
+		require $pathToConfig;
 		require BASE . 'install/includes/config.php';
 
 		if (!$error) {
@@ -77,7 +78,7 @@ if(!$error) {
 		$_SESSION['config_content'] = $content;
 		unset($_SESSION['saved']);
 
-		$locale['step_database_error_file'] = str_replace('$FILE$', '<b>' . BASE . 'config.local.php</b>', $locale['step_database_error_file']);
+		$locale['step_database_error_file'] = str_replace('$FILE$', '<b>' . $pathToConfig . '</b>', $locale['step_database_error_file']);
 		error($locale['step_database_error_file'] . '<br/>
 			<textarea cols="70" rows="10">' . $content . '</textarea>');
 	}
